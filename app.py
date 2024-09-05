@@ -78,7 +78,10 @@ def stop_vpn(profile):
 
 def get_wireguard_profiles():
     result = subprocess.run(['sudo', 'ls', '/etc/wireguard'], stdout=subprocess.PIPE)
-    return result.stdout.decode().splitlines()
+    profiles = []
+    for prof in result.stdout.decode().splitlines():
+        profiles.append(prof.replace(".conf",""))
+    return 
 
 # Check if a specific WireGuard profile is running
 def is_wireguard_running(profile):
@@ -92,7 +95,7 @@ def start_wireguard(profile):
     stop_all_vpn()
     
     # Start the selected WireGuard profile
-    subprocess.call(WIREGUARD_START_CMD.format(profile.replace(".conf","")), shell=True)
+    subprocess.call(WIREGUARD_START_CMD.format(profile), shell=True)
     
     # Set the LED to 1-second blink (VPN is running)
     set_led_blink_1s()
@@ -102,7 +105,7 @@ def start_wireguard(profile):
 # Route to stop a WireGuard profile
 @app.route('/wireguard/stop/<profile>')
 def stop_wireguard(profile):
-    subprocess.call(WIREGUARD_STOP_CMD.format(profile.replace(".conf","")), shell=True)
+    subprocess.call(WIREGUARD_STOP_CMD.format(profile), shell=True)
 
     # Check if any VPN is still running (OpenVPN or WireGuard)
     if any(is_vpn_running(p) for p in get_vpn_profiles()) or any(is_wireguard_running(p) for p in get_wireguard_profiles()):
@@ -126,7 +129,7 @@ def stop_all_vpn():
     # Stop all WireGuard profiles
     for profile in get_wireguard_profiles():
         if is_wireguard_running(profile):
-            subprocess.call(WIREGUARD_STOP_CMD.format(profile.replace(".conf","")), shell=True)
+            subprocess.call(WIREGUARD_STOP_CMD.format(profile), shell=True)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=4500, debug=True)

@@ -54,7 +54,7 @@
             <tbody>
                 {% for profile in wireguard_profiles %}
                 <tr>
-                    <td>{{ profile.replace(".conf","") }}</td>
+                    <td>{{ profile }}</td>
                     <td>
                         {% if wireguard_status[profile] %}
                         <span class="badge bg-success">Running</span>
