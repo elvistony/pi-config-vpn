@@ -84,6 +84,24 @@ def get_wireguard_profiles():
             profiles.append(prof.replace(".conf",""))
     return profiles
 
+def rename_interface(old_name, new_name="wireguard"):
+    try:
+        subprocess.run(['sudo', 'ip', 'link', 'set', 'dev', old_name, 'down'], check=True)
+        subprocess.run(['sudo', 'ip', 'link', 'set', 'dev', old_name, 'name', new_name], check=True)
+        subprocess.run(['sudo', 'ip', 'link', 'set', 'dev', new_name, 'up'], check=True)
+        print(f"Renamed {old_name} to {new_name}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error renaming interface {old_name}: {e}")
+
+def update_iptables_rules(interface_name):
+    try:
+        subprocess.run(['sudo', 'iptables', '-t', 'nat', '-A', 'POSTROUTING', '-o', interface_name, '-j', 'MASQUERADE'], check=True)
+        subprocess.run(['sudo', 'iptables', '-A', 'FORWARD', '-i', interface_name, '-j', 'ACCEPT'], check=True)
+        subprocess.run(['sudo', 'iptables', '-A', 'FORWARD', '-o', interface_name, '-j', 'ACCEPT'], check=True)
+        print(f"Updated iptables rules for {interface_name}")
+    except subprocess.CalledProcessError as e:
+        print(f"Error updating iptables rules for {interface_name}: {e}")
+
 # Check if a specific WireGuard profile is running
 def is_wireguard_running(profile):
     result = subprocess.run(['sudo', 'wg', 'show'], stdout=subprocess.PIPE)
@@ -97,6 +115,8 @@ def start_wireguard(profile):
     
     # Start the selected WireGuard profile
     subprocess.call(WIREGUARD_START_CMD.format(profile), shell=True)
+    rename_interface(profile)
+    # update_iptables_rules(interface_name)
     
     # Set the LED to 1-second blink (VPN is running)
     set_led_blink_1s()
