@@ -51,6 +51,7 @@ def is_vpn_running(profile):
 def index():
     openvpn_profiles = get_vpn_profiles()
     openvpn_status = {profile: is_vpn_running(profile) for profile in openvpn_profiles}
+    print(openvpn_status)
     
     wireguard_profiles = get_wireguard_profiles()
     wireguard_status = {profile: is_wireguard_running(profile) for profile in wireguard_profiles}

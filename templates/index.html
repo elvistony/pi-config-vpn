@@ -18,18 +18,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% for profile in profiles %}
+                {% for profile in openvpn_profiles %}
                 <tr>
                     <td>{{ profile }}</td>
                     <td>
-                        {% if status[profile] %}
+                        {% if openvpn_status[profile] %}
                             <span class="badge bg-success">Running</span>
                         {% else %}
                             <span class="badge bg-secondary">Stopped</span>
                         {% endif %}
                     </td>
                     <td>
-                        {% if status[profile] %}
+                        {% if openvpn_status[profile] %}
                             <a href="{{ url_for('stop_vpn', profile=profile) }}" class="btn btn-danger">Stop</a>
                         {% else %}
                             <a href="{{ url_for('start_vpn', profile=profile) }}" class="btn btn-success">Start</a>
