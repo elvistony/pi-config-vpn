@@ -13,6 +13,7 @@
             <thead>
                 <tr>
                     <th>VPN Profile</th>
+                    <th>Status</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -21,8 +22,52 @@
                 <tr>
                     <td>{{ profile }}</td>
                     <td>
-                        <a href="{{ url_for('start_vpn', profile=profile) }}" class="btn btn-success">Start</a>
-                        <a href="{{ url_for('stop_vpn', profile=profile) }}" class="btn btn-danger">Stop</a>
+                        {% if status[profile] %}
+                            <span class="badge bg-success">Running</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Stopped</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if status[profile] %}
+                            <a href="{{ url_for('stop_vpn', profile=profile) }}" class="btn btn-danger">Stop</a>
+                        {% else %}
+                            <a href="{{ url_for('start_vpn', profile=profile) }}" class="btn btn-success">Start</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="vpn-section">
+        <h2>WireGuard VPNs</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Profile</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profile in wireguard_profiles %}
+                <tr>
+                    <td>{{ profile }}</td>
+                    <td>
+                        {% if wireguard_status[profile] %}
+                        <span class="badge bg-success">Running</span>
+                        {% else %}
+                        <span class="badge bg-danger">Stopped</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if wireguard_status[profile] %}
+                        <a href="/wireguard/stop/{{ profile }}" class="btn btn-danger">Stop</a>
+                        {% else %}
+                        <a href="/wireguard/start/{{ profile }}" class="btn btn-success">Start</a>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
