@@ -31,6 +31,7 @@ WIREGUARD_STOP_CMD = "sudo wg-quick down {}"
 # Function to get available VPN profiles
 def get_vpn_profiles():
     profiles = []
+    print("OPENVPNDIR:",os.listdir(VPN_DIR))
     for filename in os.listdir(VPN_DIR):
         if filename.endswith(".conf"):
             profiles.append(filename[:-5])  # Strip the '.conf' extension
