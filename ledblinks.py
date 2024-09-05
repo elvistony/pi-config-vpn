@@ -19,24 +19,33 @@ import time
 #         f.write('5000')  # 5 seconds off
 
 # Turn LED off
+# def set_led_off():
+#     with open('/sys/class/leds/ACT/trigger', 'w') as f:
+#         f.write('none')  # Disable trigger
+#     with open('/sys/class/leds/ACT/brightness', 'w') as f:
+#         f.write('0')  # Turn LED off
+
+# def set_led_blink_1s():
+#     with open('/sys/class/leds/ACT/trigger', 'w') as f:
+#         f.write('timer')
+#     with open('/sys/class/leds/ACT/delay_on', 'w') as f:
+#         f.write('1000')  # 1 second on
+#     with open('/sys/class/leds/ACT/delay_off', 'w') as f:
+#         f.write('1000')  # 1 second off
+
+# def set_led_blink_5s():
+#     with open('/sys/class/leds/ACT/trigger', 'w') as f:
+#         f.write('timer')
+#     with open('/sys/class/leds/ACT/delay_on', 'w') as f:
+#         f.write('5000')  # 5 seconds on
+#     with open('/sys/class/leds/ACT/delay_off', 'w') as f:
+#         f.write('5000')  # 5 seconds off
+
 def set_led_off():
-    with open('/sys/class/leds/ACT/trigger', 'w') as f:
-        f.write('none')  # Disable trigger
-    with open('/sys/class/leds/ACT/brightness', 'w') as f:
-        f.write('0')  # Turn LED off
+    pass
 
 def set_led_blink_1s():
-    with open('/sys/class/leds/ACT/trigger', 'w') as f:
-        f.write('timer')
-    with open('/sys/class/leds/ACT/delay_on', 'w') as f:
-        f.write('1000')  # 1 second on
-    with open('/sys/class/leds/ACT/delay_off', 'w') as f:
-        f.write('1000')  # 1 second off
+    pass
 
 def set_led_blink_5s():
-    with open('/sys/class/leds/ACT/trigger', 'w') as f:
-        f.write('timer')
-    with open('/sys/class/leds/ACT/delay_on', 'w') as f:
-        f.write('5000')  # 5 seconds on
-    with open('/sys/class/leds/ACT/delay_off', 'w') as f:
-        f.write('5000')  # 5 seconds off
+    pass
