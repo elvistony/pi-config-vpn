@@ -71,8 +71,12 @@ def stop_vpn(profile):
     return redirect(url_for('index'))
 
 # Get the list of WireGuard profiles
+# def get_wireguard_profiles():
+#     return [f.split('/')[-1].replace('.conf', '') for f in glob.glob(WIREGUARD_CONF_PATH)]
+
 def get_wireguard_profiles():
-    return [f.split('/')[-1].replace('.conf', '') for f in glob.glob(WIREGUARD_CONF_PATH)]
+    result = subprocess.run(['sudo', 'ls', '/etc/wireguard'], stdout=subprocess.PIPE)
+    return result.stdout.decode().splitlines()
 
 # Check if a specific WireGuard profile is running
 def is_wireguard_running(profile):
