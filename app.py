@@ -70,9 +70,6 @@ def stop_vpn(profile):
     subprocess.call(STOP_CMD.format(profile), shell=True)
     return redirect(url_for('index'))
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
-
 # Get the list of WireGuard profiles
 def get_wireguard_profiles():
     return [f.split('/')[-1].replace('.conf', '') for f in glob.glob(WIREGUARD_CONF_PATH)]
@@ -124,3 +121,6 @@ def stop_all_vpn():
     for profile in get_wireguard_profiles():
         if is_wireguard_running(profile):
             subprocess.call(WIREGUARD_STOP_CMD.format(profile), shell=True)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=4500, debug=True)
