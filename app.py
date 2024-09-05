@@ -80,7 +80,8 @@ def get_wireguard_profiles():
     result = subprocess.run(['sudo', 'ls', '/etc/wireguard'], stdout=subprocess.PIPE)
     profiles = []
     for prof in result.stdout.decode().splitlines():
-        profiles.append(prof.replace(".conf",""))
+        if('.conf' in prof):
+            profiles.append(prof.replace(".conf",""))
     return profiles
 
 # Check if a specific WireGuard profile is running
