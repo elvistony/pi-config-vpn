@@ -81,7 +81,7 @@ def get_wireguard_profiles():
     profiles = []
     for prof in result.stdout.decode().splitlines():
         profiles.append(prof.replace(".conf",""))
-    return 
+    return profiles
 
 # Check if a specific WireGuard profile is running
 def is_wireguard_running(profile):
