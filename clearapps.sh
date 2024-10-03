@@ -5,6 +5,7 @@ APPS_FILE="applist.txt"
 
 # Function to close an app using adb
 close_app() {
+    echo "adb shell am force-stop $1"
     adb shell am force-stop $1
 }
 
