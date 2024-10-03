@@ -9,7 +9,41 @@
 <body>
     <div class="container mt-5">
 
-        <div class="vpn-section container mt-5">
+        
+
+        <h1 class="text-center">OpenVPN Manager</h1>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>VPN Profile</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profile in openvpn_profiles %}
+                <tr>
+                    <td>{{ profile }}</td>
+                    <td>
+                        {% if openvpn_status[profile] %}
+                            <span class="badge bg-success">Running</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Stopped</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if openvpn_status[profile] %}
+                            <a href="{{ url_for('stop_vpn', profile=profile) }}" class="btn btn-danger">Stop</a>
+                        {% else %}
+                            <a href="{{ url_for('start_vpn', profile=profile) }}" class="btn btn-success">Start</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="vpn-section container mt-5"></div>
             <h1 class="text-center">Wireguard Manager</h1>
             <table class="table table-bordered mt-4">
                 <thead>
@@ -43,37 +77,6 @@
             </table>
         </div>
 
-        <h1 class="text-center">OpenVPN Manager</h1>
-        <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th>VPN Profile</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for profile in openvpn_profiles %}
-                <tr>
-                    <td>{{ profile }}</td>
-                    <td>
-                        {% if openvpn_status[profile] %}
-                            <span class="badge bg-success">Running</span>
-                        {% else %}
-                            <span class="badge bg-secondary">Stopped</span>
-                        {% endif %}
-                    </td>
-                    <td>
-                        {% if openvpn_status[profile] %}
-                            <a href="{{ url_for('stop_vpn', profile=profile) }}" class="btn btn-danger">Stop</a>
-                        {% else %}
-                            <a href="{{ url_for('start_vpn', profile=profile) }}" class="btn btn-success">Start</a>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
         <div class="text-center mb-4">
             <h3>Task Killer</h3>
             <a class="btn btn-danger btn-sm" href="/clearapps/">Close Background Apps</a>

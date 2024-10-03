@@ -24,3 +24,5 @@ com.netflix.ninja
 uk.coo.freeview.amc_catchup
 uk.co.freeview.onnow
 uk.co.freeview.ch4_vod
+uk.co.freeview.explore
+com.google.android.videos
