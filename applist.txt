@@ -1,0 +1,13 @@
+com.cxinventor.file.explorer
+uk.co.freeview.bbc
+uk.co.freeview.ch5
+uk.co.freeview.itv
+uk.co.freeview.stv
+com.plexapp.android
+uk.co.freeview.uktv
+com.tcl.gallery
+org.videolan.vlc
+com.rma.speedtesttv
+com.mmtv.manoramamax.android
+in.startv.hotstar.dplus.tv
+com.google.android.play.games

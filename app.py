@@ -123,6 +123,11 @@ def start_wireguard(profile):
 
     return redirect(url_for('index'))
 
+@app.route('/clearapps')
+def clearapps():
+    os.system(".\clearapps.sh")
+    return redirect(url_for('index'))
+
 # Route to stop a WireGuard profile
 @app.route('/wireguard/stop/<profile>')
 def stop_wireguard(profile):
