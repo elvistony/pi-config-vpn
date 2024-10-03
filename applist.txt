@@ -26,3 +26,5 @@ uk.co.freeview.onnow
 uk.co.freeview.ch4_vod
 uk.co.freeview.explore
 com.google.android.videos
+tv.pluto.android
+com.jio.media.stb.ondemand
