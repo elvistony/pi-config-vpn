@@ -126,10 +126,12 @@ def start_wireguard(profile):
 
 @app.route('/clearapps/')
 def clearapps():
+    os.system("adb connect 192.168.4.10")
     with open("applist.txt",'r') as applist:
         for app in applist.readlines():
             os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
             sleep(0.1)
+    os.system("adb disconnect 192.168.4.10")
     return redirect(url_for('index'))
 
 # Route to stop a WireGuard profile
