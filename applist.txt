@@ -11,3 +11,16 @@ com.rma.speedtesttv
 com.mmtv.manoramamax.android
 in.startv.hotstar.dplus.tv
 com.google.android.play.games
+com.ionitech.airscreen
+com.vimtv
+com.lagradost.cloudstream3
+com.google.android.youtube.tvmusic
+com.amazon.amazonvideo.livingroom
+uk.co.freeview.bbc_sounds
+com.android.camera
+com.android.messaging
+com.google.android.youtube.tv
+com.netflix.ninja
+uk.coo.freeview.amc_catchup
+uk.co.freeview.onnow
+uk.co.freeview.ch4_vod
