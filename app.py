@@ -3,6 +3,7 @@ import os
 import subprocess
 import glob
 from ledblinks import *
+from time import sleep
 
 def is_connected_to_internet():
     try:
@@ -125,7 +126,10 @@ def start_wireguard(profile):
 
 @app.route('/clearapps')
 def clearapps():
-    os.system(".\clearapps.sh")
+    with open("applist.txt",'r') as applist:
+        for app in applist.readlines():
+            os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
+            sleep(0.1)
     return redirect(url_for('index'))
 
 # Route to stop a WireGuard profile
