@@ -124,7 +124,7 @@ def start_wireguard(profile):
 
     return redirect(url_for('index'))
 
-@app.route('/clearapps')
+@app.route('/clearapps/')
 def clearapps():
     with open("applist.txt",'r') as applist:
         for app in applist.readlines():
