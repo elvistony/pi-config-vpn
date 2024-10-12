@@ -75,14 +75,18 @@ def stop_vpn(profile):
 
 @app.route('/openwebsite/', methods=['GET'])
 def open_website():
+    website = request.args.get('url')
+    if(website=="" or website=="#"):
+        return "Error Website Address: "+website
     # subprocess.call(STOP_CMD.format(profile), shell=True)
-    # os.system("adb connect 192.168.4.10")
+    os.system("adb connect 192.168.4.10")
+    os.system("adb shell am start -a android.intent.action.VIEW -d "+website)
     # with open("applist.txt",'r') as applist:
     #     for app in applist.readlines():
     #         os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
     #         sleep(0.1)
-    # os.system("adb disconnect 192.168.4.10")
-    return request.args.get('url')
+    os.system("adb disconnect 192.168.4.10")
+    return 
 
 # Get the list of WireGuard profiles
 # def get_wireguard_profiles():
