@@ -82,7 +82,7 @@ def open_website():
     #         os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
     #         sleep(0.1)
     # os.system("adb disconnect 192.168.4.10")
-    return request.form['url']
+    return request.args.get('url')
 
 # Get the list of WireGuard profiles
 # def get_wireguard_profiles():
