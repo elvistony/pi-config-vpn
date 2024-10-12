@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for,request
 import os
 import subprocess
 import glob
@@ -72,6 +72,17 @@ def start_vpn(profile):
 def stop_vpn(profile):
     subprocess.call(STOP_CMD.format(profile), shell=True)
     return redirect(url_for('index'))
+
+@app.route('/openwebsite/', methods=['GET'])
+def open_website():
+    # subprocess.call(STOP_CMD.format(profile), shell=True)
+    # os.system("adb connect 192.168.4.10")
+    # with open("applist.txt",'r') as applist:
+    #     for app in applist.readlines():
+    #         os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
+    #         sleep(0.1)
+    # os.system("adb disconnect 192.168.4.10")
+    return request.form['url']
 
 # Get the list of WireGuard profiles
 # def get_wireguard_profiles():
