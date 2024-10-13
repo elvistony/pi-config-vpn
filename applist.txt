@@ -28,3 +28,6 @@ uk.co.freeview.explore
 com.google.android.videos
 tv.pluto.android
 com.jio.media.stb.ondemand
+com.google.android.apps.tachyon
+com.imdbtv.livingroom
+com.peacocktv.peacockandroid
