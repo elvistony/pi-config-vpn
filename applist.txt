@@ -21,7 +21,7 @@ com.android.camera
 com.android.messaging
 com.google.android.youtube.tv
 com.netflix.ninja
-uk.coo.freeview.amc_catchup
+uk.co.freeview.amc_catchup
 uk.co.freeview.onnow
 uk.co.freeview.ch4_vod
 uk.co.freeview.explore
@@ -31,3 +31,7 @@ com.jio.media.stb.ondemand
 com.google.android.apps.tachyon
 com.imdbtv.livingroom
 com.peacocktv.peacockandroid
+au.com.stan.and
+com.android.vending
+com.tcl.esticker
+com.tcl.waterfall.overseas
