@@ -87,7 +87,7 @@ def open_website():
     #         os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
     #         sleep(0.1)
     os.system("adb disconnect "+TV_IP)
-    return 
+    return redirect(url_for('index'))
 
 # Get the list of WireGuard profiles
 # def get_wireguard_profiles():
