@@ -28,6 +28,7 @@ WIREGUARD_CONF_PATH = "/etc/wireguard/*.conf"
 WIREGUARD_START_CMD = "sudo wg-quick up {}"
 WIREGUARD_STOP_CMD = "sudo wg-quick down {}"
 
+TV_IP = '192.168.4.6'
 
 # Function to get available VPN profiles
 def get_vpn_profiles():
@@ -79,13 +80,13 @@ def open_website():
     if(website=="" or website=="#"):
         return "Error Website Address: "+website
     # subprocess.call(STOP_CMD.format(profile), shell=True)
-    os.system("adb connect 192.168.4.10")
+    os.system("adb connect "+TV_IP)
     os.system("adb shell am start -a android.intent.action.VIEW -d "+website)
     # with open("applist.txt",'r') as applist:
     #     for app in applist.readlines():
     #         os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
     #         sleep(0.1)
-    os.system("adb disconnect 192.168.4.10")
+    os.system("adb disconnect "+TV_IP)
     return 
 
 # Get the list of WireGuard profiles
@@ -141,12 +142,12 @@ def start_wireguard(profile):
 
 @app.route('/clearapps/')
 def clearapps():
-    os.system("adb connect 192.168.4.10")
+    os.system("adb connect "+TV_IP)
     with open("applist.txt",'r') as applist:
         for app in applist.readlines():
             os.system("adb shell am force-stop {appname}".format(appname=app.strip()))
             sleep(0.1)
-    os.system("adb disconnect 192.168.4.10")
+    os.system("adb disconnect "+TV_IP)
     return redirect(url_for('index'))
 
 # Route to stop a WireGuard profile
