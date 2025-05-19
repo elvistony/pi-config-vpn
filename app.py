@@ -133,6 +133,7 @@ def start_wireguard(profile):
     # Start the selected WireGuard profile
     subprocess.call(WIREGUARD_START_CMD.format(profile), shell=True)
     # rename_interface(profile)
+    update_iptables_rules('wg0')
     # update_iptables_rules(interface_name)
     
     # Set the LED to 1-second blink (VPN is running)
